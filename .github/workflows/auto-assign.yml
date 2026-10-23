@@ -11,9 +11,9 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-    - name: 'Auto-assign issue'
-      uses: pozil/auto-assign-issue@v1
-      with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          assignees: dreamxtechofficial-admin
-          numOfAssignee: 1
+    # PRs are issues in the REST API, so this one call assigns both.
+    - name: 'Auto-assign issue or PR'
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NUMBER: ${{ github.event.issue.number || github.event.pull_request.number }}
+      run: gh api "repos/$GITHUB_REPOSITORY/issues/$NUMBER/assignees" -f "assignees[]=dreamxtechofficial-admin"
