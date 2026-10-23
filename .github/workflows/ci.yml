@@ -1,0 +1,32 @@
+# Proves CI can install the private @dreamx-tech-eduplatform/* packages from GitHub Packages.
+# One-time setup: in the package's settings (Org -> Packages -> ui -> Package settings ->
+# "Manage Actions access"), add this repository with Read role.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://npm.pkg.github.com
+          scope: '@dreamx-tech-eduplatform'
+
+      - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: npm run typecheck
+      - run: npm run build
