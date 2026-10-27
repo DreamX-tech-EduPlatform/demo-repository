@@ -12,6 +12,7 @@
   "dependencies": {
     "@dreamx-tech-eduplatform/practice-arivanan": "0.1.0",
     "@dreamx-tech-eduplatform/practice-bravin": "0.1.0",
+    "@dreamx-tech-eduplatform/practice-arivarasan": "0.1.0",
     "@dreamx-tech-eduplatform/ui": "0.1.0",
     "lucide-react": "^1.58.0",
     "next": "16.4.2",
