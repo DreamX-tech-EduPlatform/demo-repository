@@ -9,6 +9,7 @@ export default function PracticePage() {
         <Badge tone="success">Paid</Badge>
         <Badge tone="danger">Absent</Badge>
         <Badge tone="success" className="uppercase">Override test</Badge>
+        <Badge tone="success" size="md">Medium</Badge>
       </div>
     </main>
   );
